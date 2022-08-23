@@ -1,0 +1,22 @@
+.modal-content {
+    padding:40px;
+}
+.modal-title {
+    font-size: 24px;
+    color: $color__primary;
+    font-weight:bold;
+    margin: 0;
+    padding-top: 20px;
+}
+.modal-header {
+    border-bottom:none;
+    padding-top: 0;
+    .close {
+        padding: 1.8rem;
+        text-indent: -9999px;
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
+        background-image: url('/assets/images/icons/iconClose.svg')
+    }
+}

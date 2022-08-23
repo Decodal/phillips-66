@@ -1,0 +1,25 @@
+
+	<nav id="navMenu" class="navigation-main">
+		
+		{% set navEntries = craft.entries.section('mainContentPages').level(1)
+			
+		%}
+		<ul id="nav" class="nm__list">
+			<li class="nm__item {{ craft.app.request.segments|last == '' ? 'item-selected' }}">
+                <a class="nm__link" href="/">
+                    Home
+                </a>
+            </li>
+			{% nav entry in navEntries %}
+			{% set isActive = entry.id in activeChain ? true : false %}
+				{% set newTab = entry.type == 'redirect' ? entry.newTab : false %}
+				{% if entry.title != 'Home' %}
+				<li class="nm__item {{ isActive ? 'item-selected' }}">
+					<a href="{{ entry.url }}" class="nm__link"
+					{% if newTab %}target='_blank'{% endif %}>{{ entry.title }}</a>
+				</li>
+				{% endif %}
+			{% endnav %}
+		</ul>
+	</nav>
+

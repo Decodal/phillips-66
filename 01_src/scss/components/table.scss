@@ -1,0 +1,48 @@
+// TABLE (content blocks)
+
+// Main styles for .table
+.table {
+  height: 1px;
+  width: 100%;
+  margin-bottom: $baseline;
+  border: none;
+  border-collapse: collapse;
+  tr, td, td > div { height: 100%; }
+
+  th, td {
+    padding: 0;
+
+    &[data-cell-align="left"] { text-align: left }
+    &[data-cell-align="center"] { text-align: center }
+    &[data-cell-align="right"] { text-align: right }
+
+    @for $i from 0 through 100 {
+      &[data-cell-width="#{$i}"] { width: #{$i + '%'} }
+    }
+        
+    .cell {
+      display: block;
+      position: relative;
+      height: 100%;
+      padding: 10px;
+      outline: #{$line-width} solid $color__tertiary;
+      outline-offset: -1px;
+      text-align: inherit;
+      background-color: white;
+    }
+  }
+  th {
+    .cell {
+      background-color: $color__tertiary;
+      color: white;
+    }
+  }
+     
+  
+  &.leftings {
+    td:first-child .cell {
+      background-color: $color__tertiary;
+      color: white;
+    }
+  }
+}

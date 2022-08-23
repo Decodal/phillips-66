@@ -1,0 +1,48 @@
+$mq-responsive: true;
+
+$mq-breakpoints: (
+	mobile--s: $mobile--s,
+	mobile: $mobile,
+	tablet: $tablet,
+	tablet--l: $tablet--l,
+	desktop: $desktop,
+	wide: $wide
+);
+
+$mq-show-breakpoints: (
+	mobile--s,
+	mobile,
+	tablet,
+	tablet--l,
+	desktop,
+	wide
+);
+
+@mixin mq-show-breakpoints(
+	$show-breakpoints: $mq-show-breakpoints,
+	$breakpoints: $mq-breakpoints
+) {
+	body::before {
+		background-color: #555555;
+		color: #eeeeee;
+		font: small-caption;
+		font-size: 11px;
+		padding: 6px 10px;
+		border-bottom-right-radius: 5px;
+		border-bottom-left-radius: 5px;
+		pointer-events: none;
+		position: fixed;
+		left: 50%;
+		transform: translateX(-50%);
+		top: 0;
+		z-index: 100;
+
+		// Loop through the breakpoints that should be shown
+		@each $show-breakpoint in $show-breakpoints {
+			$width: mq-get-breakpoint-width($show-breakpoint, $breakpoints);
+			@include mq($show-breakpoint, $breakpoints: $breakpoints) {
+				content: "#{$show-breakpoint} (> #{$width})";
+			}
+		}
+	}
+}

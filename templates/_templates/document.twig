@@ -1,0 +1,7 @@
+{% if entry.targetUrl|length > 1 %}
+	{% set redirectUrl = entry.targetUrl %}
+{% else %}
+	{% set redirectUrl = entry.documentFile and entry.documentFile|length ? entry.documentFile.one().url : '/' %}
+{% endif %}
+
+{% redirect redirectUrl %}

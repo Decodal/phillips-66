@@ -1,0 +1,8 @@
+{
+  "buttons": ["html", "formatting", "bold", "italic", "underline", "unorderedlist", "orderedlist", "link", "file", "image"],
+  "formatting": ["p", "h2", "h3", "h4", "h5"],
+  "plugins": ["table"],
+  "toolbarFixed": true,
+  "linkNewTab": true,
+  "linkSize": 1000
+}

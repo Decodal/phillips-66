@@ -1,0 +1,60 @@
+.simple-table {
+	margin-bottom: $baseline;
+	border: #{$line-width / 2} solid $color__secondary;
+
+	.simple-table__row {
+		display: flex;
+		flex-flow: row nowrap;
+
+		.simple-table__cell {
+			flex: 1;
+			padding: 10px;
+			border: #{$line-width / 2} solid $color__secondary;
+
+			> *:first-child {margin-top: 0;}
+			> *:last-child {margin-bottom: 0;}
+		}
+	}
+	.simple-table__row:nth-child(2n) {
+		background-color: $grey__xlight;
+	}
+}
+
+.address {
+	.address__email, .address__website, .address__postalAddress, .address__telephone {
+		padding-left: 50px;
+		position: relative;
+		padding-top: 14px;
+
+		a {
+			color: $color__Cod-Gray;
+		}
+		&:before {
+			position: absolute;
+			content: "";
+			height: 40px;
+			width: 40px;
+			left: 0;
+			top: 5px;
+			background-repeat: no-repeat;
+			background-size: contain;
+			background-position: center;
+
+			// opacity: 0;
+			// transform: translateY(50px);
+			// transition: opacity 1s ease, transform 2s ease;
+		}
+	}
+	// &.revealed {
+	// 	.address__email, .address__website, .address__postalAddress, .address__telephone {
+	// 		&:before {
+	// 			opacity: 1;
+	// 			transform: none;
+	// 		}
+	// 	}
+	// }
+	.address__email:before { background-image: url('/assets/images/icons/iconEmail.png'); }
+	.address__telephone:before { background-image: url('/assets/images/icons/iconPhone.png');  }
+	.address__website:before { background: url('/assets/images/icons/iconLink.png');  }
+	.address__postalAddress:before { background-image: url('/assets/images/icons/iconAddress.png');  }
+}

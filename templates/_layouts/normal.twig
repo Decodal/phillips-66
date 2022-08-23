@@ -1,0 +1,23 @@
+{% extends "_layouts/master" %}
+
+{% block layout %}
+    <div class="layout layout--normal">
+        <div class="mh__nav-container">
+            <div class="container">
+                {% include '_globals/masthead' %}
+            </div> 
+            <div class="mh__nav mh__nav_mobile">
+                {% include '_globals/navigation' %}
+            </div>
+        </div>
+        <div class="main-content">
+            <main>
+                <div class="container-custom">
+                    {% block content %}{% endblock %}
+                </div>
+            </main>
+        </div>
+
+        {% include '_globals/footer' %}
+    </div>
+{% endblock %}

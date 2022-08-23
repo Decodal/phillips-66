@@ -1,0 +1,22 @@
+{%- set fieldLabel = fieldLabel ?? label ?? block('label') ?? null %}
+{%- set instructions = instructions ?? block('instructions') ?? null %}
+{%- set tip = tip ?? block('tip') ?? null %}
+{%- set warning = warning ?? block('warning') ?? null %}
+
+{%- if block('heading') is defined %}
+    {#- Extract whatever HTML comes before and after parent() #}
+    {%- set heading %}{% block heading %}<!-- HEADING -->{% endblock %}{% endset %}
+    {%- set headingParts = heading|split('<!-- HEADING -->', 2) %}
+    {%- set headingPrefix = headingParts[0] ?? null %}
+    {%- set headingSuffix = headingParts[1] ?? null %}
+{%- endif %}
+
+{%- if block('attr') is defined %}
+    {%- set fieldAttributes = (fieldAttributes ?? {})|merge(('<div ' ~ block('attr') ~ '>')|parseAttr, recursive=true) %}
+{%- endif %}
+
+{%- if block('input') is defined %}
+    {%- set input %}{% block input %}{{ input|raw }}{% endblock %}{% endset %}
+{%- endif %}
+
+{{ craft.cp.field(input, _context)|raw }}

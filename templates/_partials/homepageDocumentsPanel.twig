@@ -1,0 +1,35 @@
+{% block content %}
+
+    <div class="row">
+        <div class="col-xl-4 mb-5 mb-xl-0">
+            <div class="db__text">
+                <div class="db__text-upper">
+                    {{ entry.homepageDocumentsText }}
+                </div>
+                <div class="db__text-lower">
+                    <a class="btn btn__primary" href="{{ entry.homepageDocumentsButtonLink.one().url }}">{{ entry.homepageDocumentsButtonTitle }}</a>
+                </div>
+            </div>
+        </div>
+            {% set documents = craft.entries.section('documents').orderBy('postDate DESC').all() %}
+            {% if documents|length %}
+                {% for document in documents %}
+                
+                    <div class="col-lg-6 col-xl-4 align-self-end">
+                            {% if  loop.index == 1 %}
+                                <p class="font-bold font-20">Quick links to important documents</p>
+                            {% endif %}
+                        <div class="db__quick_doc">
+                            <img src="{{ document.documentThumbnail.one().url }}" alt="" title="">
+                            <div class="db__quick_doc-text">
+                                <p>{{ document.title }}</p>
+                                <a class="btn btn__primary" href="{{ document.url }}">View/download</a>
+                            </div>
+                                
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        
+    </div>  
+{% endblock %}

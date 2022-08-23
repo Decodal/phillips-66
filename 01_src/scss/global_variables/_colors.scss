@@ -1,0 +1,56 @@
+$color__primary: #e10000;
+$color__primary--light: lighten($color__primary, 26%);
+$color__primary--dark: darken($color__primary, 12%);
+
+$color__secondary: #071d49;
+$color__secondary--light: lighten($color__secondary, 21%);
+$color__secondary--dark: darken($color__secondary, 12%);
+
+$color__tertiary: #b80e80;
+$color__tertiary--light: lighten($color__tertiary, 21%);
+$color__tertiary--dark: darken($color__tertiary, 12%);
+
+$color__quarternary: #0069a0;
+$color__quarternary--light: lighten($color__quarternary, 21%);
+$color__quarternary--dark: darken($color__quarternary, 12%);
+
+$grey__mid: #f2f3f8;
+$grey__xlight: lighten($grey__mid, 45%);
+$grey__light: lighten($grey__mid, 28%);
+$grey__dark: saturate(darken($grey__mid, 12%), 12%);
+$grey__xdark: saturate(darken($grey__mid, 32%), 18%);
+
+// $p66-theme-background-light-gray: #f8f9fa;
+
+// $color__White: #FFFFFF;
+// $color__Cararra: #F4F3F1;
+// $color__Link-Water: #e9f1f8;
+// $color__Mercury: #E5E5E5;
+// $color__Alto1: #DADADA;
+// $color__Alto2: #D4D4D4;
+// $color__Alto3: #D3D3D3;
+// $color__Silver: #C5C5C5;
+// $color__Nobel: #B3B3B3;
+// $color__RawUmber: #958676;
+// $color__Picton-Blue: #38A8E0;
+// $color__Dove-Gray: #636363;
+// $color__Mariner: #2273B9;
+// $color__Crimson: #E40F18;
+// $color__Tundora1: #4D4D4D;
+// $color__Tundora2: #4A4A4A;
+// $color__Eminence: #662682;
+// $color__Mine-Shaft: #333333;
+// $color__Cod-Gray: #151515;
+// $color__Cod-Gray2: #121212;
+// $color__Black: #000000;
+
+$color__White: #FFFFFF;
+$color__Cararra: #F4F3F1;
+$color__RawUmber: #958676;
+$color__Phillips66Red: #da2b1f;
+$color__AlizarinCrimson: #e1251b;
+$color__Black: #000000;
+$color__Bunker: #101820;
+$color--Cod-Gray: #121212;
+$color__Cod-Gray: #121212;
+

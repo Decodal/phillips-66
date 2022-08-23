@@ -1,0 +1,111 @@
+{# LAYOUT: Master
+ # -------------------------------
+ # Master page layout contains header, footer and body container #}
+
+{# Inject variables to master template #}
+{% extends '_partials/_template-variables' %}
+{% block master %}
+
+{# Set headers #}
+{# {% set expiry = now|date_modify('+30 days') %}
+{% header "Cache-Control: max-age=" ~ (expiry.timestamp - now.timestamp) %}
+{% header "Pragma: cache" %}
+{% header "Expires: " ~ expiry|date('D, d M Y H:i:s', 'GMT') ~ " GMT" %} #}
+{# {% header "x-content-type-options: nosniff" %}
+{% header "x-xss-protection: 1; mode=block" %} #}
+
+{# Sec content security policy here, below is an example. Not a good idea to use this without testing thoroughly as it can prevent the loading of resources if not set properly #}
+{# {% header "content-security-policy: script-src 'self' 'unsafe-inline' 'unsafe-eval' www.google-analytics.com ssl.google-analytics.com ajax.googleapis.com data:;    frame-src 'self' http://view.vzaar.com; img-src 'self' https: www.google-analytics.com ssl.google-analytics.com ajax.googleapis.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; frame-ancestors 'self'" %} #}
+
+<!DOCTYPE html>
+<html lang="en-gb" dir="ltr">
+
+<head>
+    {% if entry is defined %}
+        {% set metaTitle = (entry.metaTitle) ? entry.metaTitle : entry.title %}
+        {% set metaTitle = entry.type == "homepage" ? false : metaTitle %}
+        {% set metaDescription = entry.metaDescription %}
+        {% set metaRobots = entry.metaRobots %}
+        {% set canonical = entry.url %}
+        {% set ogCrop = {
+            mode: 'crop',
+            width: 1200,
+            height: 630,
+            quality: 75,
+            position: 'top-center'
+        } %}
+        {% if entry.openGraphImage is not empty %}
+            {% set openGraphImage = entry.openGraphImage.one().getUrl(ogCrop) %}
+        {% endif %}
+    {% endif %}
+
+    {# meta #}
+    <meta charset="utf-8">
+    <title>{% if metaTitle is defined %}{{ metaTitle }} - {% endif %}{{ siteName }}</title>
+
+    {# seo #}
+    <meta name="description" content="{% if metaDescription is defined %}{{ metaDescription }}{% endif %}">
+    <meta name="keywords" content="{% if metaKeywords is defined %}{{ metaKeywords }}{% endif %}">
+    <link rel="canonical" href="{% if canonical is defined %}{{ canonical }}{% endif %}">
+    <meta name="robots" content="{% if metaRobots is defined %}{{ metaRobots }}{% else %}index,follow{% endif %}">
+
+    {# open graph #}
+    <meta property="og:site_name" content="{{ siteName }}">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="{% if metaTitle is defined %}{{ metaTitle }} - {% endif %}{{ siteName }}">
+    <meta property="og:url" content="{% if canonical is defined %}{{ canonical }}{% endif %}">
+    <meta property="og:image" content="{% if openGraphImage is defined %}{{ openGraphImage }}{% else %}{{ siteUrl }}assets/images/og-default.jpg{% endif %}">
+    <meta property="og:description" content="{% if metaDescription is defined %}{{ metaDescription }}{% endif %}">
+
+    {# style #}
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ siteUrl }}assets/css/styles.css?{{ siteVersion }}">
+
+    {# icons #}
+    <link rel="shortcut icon" href="{{ siteUrl }}favicon.ico">
+    <link rel="icon" href="{{ siteUrl }}assets/images/favicons/favicon-16x16.png" sizes="16x16" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ siteUrl }}assets/images/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ siteUrl }}assets/images/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="{{ siteUrl }}assets/images/favicons/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ siteUrl }}assets/images/favicons/favicon-16x16.png">
+
+    {# script #}
+    <!-- Global site tag (gtag.js) - Google Analytics, initialsed with key in app -->
+    {% if gaKey|length %}
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id={{gaKey}}"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', '{{gaKey}}');
+        </script>
+    {% endif %}
+</head>
+
+
+{% set bodyClasses = [
+    "page-type--" ~ ( entry is defined ? entry.type.handle : 'unknown' )
+] %}
+
+<body
+    id="page--{{ entry is defined ? entry.slug : 'unknown' }}"
+    class="{{ bodyClasses|join(' ') }}"
+    data-siteurl="{{ siteUrl }}" 
+    data-gakey="{{ gaKey }}"
+    >
+
+    {% block layout %}
+        {% block content %}{% endblock %}
+    {% endblock %}
+
+    {% if globalModal.modalActive == true %}
+         {% include '_globals/modal' %}
+    {% endif %}
+    <script src="{{ siteUrl }}assets/js/app.js?{{ siteVersion }}" data-asset-store="/assets"></script>
+</body>
+<div class="backdrop"></div>
+</html>
+
+{% endblock %}

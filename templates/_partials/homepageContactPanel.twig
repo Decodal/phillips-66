@@ -1,0 +1,17 @@
+{% block content %}
+
+    <div class="row">
+        <div class="col-md-5">
+            <div class="mp__image">
+                <img src="{{ entry.homepageContactIcon.one().url }}" alt="" title="">
+            </div>
+        </div>
+        <div class="col-md-7">
+            <div class="mp__text color__secondary">
+                {{ entry.homepageContactText }}
+
+                <a class="btn btn__primary min-width" href="{{ entry.homepageContactButtonLink.one().url }}">{{ entry.homepageContactButtonTitle }}</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

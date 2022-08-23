@@ -1,0 +1,13 @@
+
+{% set redirectUrl = false %}
+
+{% if entry.type == 'redirect' %}
+  {% set redirectUrl = entry.targetUrl|length ? entry.targetUrl : redirectUrl %}
+  {% set redirectUrl = entry.targetEntry|length ? entry.targetEntry.one().url : redirectUrl %}
+{% endif %}
+
+{% if redirectUrl %}
+  {% redirect redirectUrl %} {# set up a 'redirect' template type to use this #}
+{% else %}
+  {% include ["_templates/" ~ entry.type, "_templates/default"] %}
+{% endif %}

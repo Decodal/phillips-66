@@ -1,0 +1,13 @@
+{% set glossaryTerms = craft.entries.section('glossaryTerms').all() %}
+[
+{% for term in glossaryTerms|multisort(e => e.title|length) %}
+{
+  "term" : "{{ term.glossaryTerm }}",
+  "description" : "{{ term.glossaryDefinition|replace({"\n":"\\n"}) }}"
+{% if loop.last %}
+  }
+{% else %}
+  },
+{% endif %}
+{% endfor %}
+]

@@ -1,0 +1,63 @@
+
+{% set rows = block.tableData.rows %}
+{% set columns = block.tableData.columns %}
+
+{% set tableHead = false %}
+{% for col in columns %}
+    {% set tableHead = col.heading and col.heading != 'null' ? true : tableHead %}
+{% endfor %}
+
+<table class="table {{ block.customClass ? block.customClass }}">
+    {% if tableHead %}
+        <thead>
+            <tr class="has-scroll-reveal">
+                {% for col in columns %}
+                    {% if col.heading != 'null' %}
+                        {% set rowSpan = 1 %}
+                        {% if not loop.last %}
+                            {% set lookingForNulls = true %}
+                            {% for otherCellIndex in loop.index..(columns|length - 1) %}
+                                {% if columns[otherCellIndex].heading == 'null' and lookingForNulls %}
+                                    {% set rowSpan = rowSpan + 1 %}
+                                {% else %}
+                                    {% set lookingForNulls = false %}
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                        <th colspan="{{ rowSpan }}" data-cell-align="{{ col.align }}" data-cell-width="{{ col.width|number_format }}">
+                            {% if col.heading != 'blank' %}
+                                <span class="cell">{{ col.heading }}</span>
+                            {% endif %}
+                        </th>
+                    {% endif %}
+                {% endfor %}
+            </tr>
+        </thead>
+    {% endif %}
+    <tbody>
+        {% for row in rows %}
+            <tr class="has-scroll-reveal">
+                {% for cell in row %}
+                    {% if cell != 'null' %}
+                        {% set rowSpan = 1 %}
+                        {% if not loop.last %}
+                            {% set lookingForNulls = true %}
+                            {% for otherCellIndex in loop.index..(row|length - 1) %}
+                                {% if row[otherCellIndex] == 'null' and lookingForNulls %}
+                                    {% set rowSpan = rowSpan + 1 %}
+                                {% else %}
+                                    {% set lookingForNulls = false %}
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                        <td colspan="{{ rowSpan }}" data-cell-align="{{ columns[loop.index0].align }}">
+                            {% if cell != 'blank' %}
+                                <span class="cell">{{ cell }}</span>
+                            {% endif %}
+                        </td>
+                    {% endif %}
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>

@@ -1,0 +1,16 @@
+{% block content %}
+  <div class="row">
+        <div class="col-md-5">
+            <div class="mp__image">
+                {# <img src="/assets/images/content/memberPortalIcon.svg" alt="" title=""> #}
+                <img src="{{ entry.homepageInfoIcon.one().url }}" alt="" title="">
+            </div>
+        </div>
+        <div class="col-md-7">
+            <div class="mp__text">
+                {{ entry.homepageInfoText }}
+                <a class="btn btn__primary min-width" href="{{ entry.infoButtonLink }}" target="_blank">{{ entry.infoButtonTitle }}</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

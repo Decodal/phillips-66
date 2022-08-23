@@ -1,0 +1,11 @@
+{
+	"eslintIntegration": true,
+	"cssEnable": ["scss"],
+	"useTabs": true,
+	"printWidth": 80,
+	"tabWidth": 4,
+	"singleQuote": false,
+	"trailingComma": "none",
+	"bracketSpacing": true,
+	"semi": true
+}

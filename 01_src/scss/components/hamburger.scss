@@ -1,0 +1,45 @@
+$hamburger__height: 40px;
+$hamburger__width: 40px;
+$hamburger__bar-height: 4px;
+$hamburger__gap-height: 8px;
+$hamburger__colour: black;
+$hamburger__transition-duration: 1s;
+
+#hamburger {
+	position: relative;
+	height: $hamburger__height;
+	width: $hamburger__width;
+	flex: 0 0 auto;
+
+	i, i::before, i::after {
+		position: absolute;
+		width: 100%;
+		height: $hamburger__bar-height;
+		left: 0;
+		top: calc(50% - #{$hamburger__bar-height / 2});
+		background-color: $hamburger__colour;
+		transition: background-color $hamburger__transition-duration;
+	}
+	i::before, i::after {
+		content: "";
+		top: -#{$hamburger__gap-height + $hamburger__bar-height};
+		transition: transform $hamburger__transition-duration;
+	}
+	i::after {
+		top: #{$hamburger__gap-height + $hamburger__bar-height};
+	}
+	&.hamburger--open {
+		i {
+			background-color: transparent;
+		}
+		i:before{
+			transform: translateY(#{$hamburger__gap-height + $hamburger__bar-height}) rotate(-45deg);
+		}
+		i:after{
+			transform: translateY(-#{$hamburger__gap-height + $hamburger__bar-height}) rotate(45deg);
+		}
+	}
+	@include media-breakpoint-up(lg) {
+		display: none;
+	}
+}

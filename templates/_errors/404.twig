@@ -1,0 +1,41 @@
+{#
+ # 404 template
+ # ------------
+ #
+ # This template is loaded whenever Craft cannot figure out how to
+ # respond to an incoming request. No setup is involved to get your
+ # 404 page working; you just need to call it 404.html and put it
+ # at the root of your craft/templates/ folder.
+ #
+ # You can also create 400.html, 403.html, 500.html, and 503.html
+ # templates if you’d like. If Craft can’t find an error template
+ # to match the error code, it will just use the one in
+ # craft/app/templates/ instead.
+ #
+ # See this page for more details on how Craft routes requests:
+ # http://craftcms.com/docs/routing
+ #}
+
+{% extends "_layouts/master" %}
+{% set entry = craft.entries.first() %}
+{% set title = "404" %}
+
+{% block content %}
+<div class="container">
+	<div class="row">
+		<div class="col-xs-12">
+			<h1>Oops! Page not found</h1>
+			<p>It seems that the page you are looking for does not exist. Please use the menu above to try to navigate to what you are trying to find or alternatively use the search function on this page.</p>
+			<h2>Search</h2>
+			<form class="main-search" novalidate="novalidate" style="display: block;">
+				<div class="input-group">
+			      	<input type="text" class="form-control" placeholder="Search for..." data-search-input="404">
+			      	<span class="input-group-btn">
+			        	<button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search" aria-hidden="true" data-search-button=""></span></button>
+			      	</span>
+			    </div><!-- /input-group -->
+			</form>
+		</div>
+	</div>
+</div>
+{% endblock %}

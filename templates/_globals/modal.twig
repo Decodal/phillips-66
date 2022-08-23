@@ -1,0 +1,20 @@
+
+<!-- Modal -->
+<div class="modal fade" id="aboutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">{{ globalModal.modalTitle }}</h3>
+        <a href="" class="close" data-dismiss="modal" aria-label="Close">Close</a>
+      </div>
+      <div class="modal-body">
+        
+       {% set contentBlocks = globalModal.contentBlocks %}
+            {% include '_partials/content-blocks' with {
+                contentBlocks: globalModal.contentBlocks,
+                contentBlocksOverride: true
+            } %}
+      </div>
+    </div>
+  </div>
+</div>

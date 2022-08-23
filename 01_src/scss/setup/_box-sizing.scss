@@ -1,0 +1,8 @@
+// box-sizing.scss
+
+// Adds box-sizing to everything, for sane element sizing
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}

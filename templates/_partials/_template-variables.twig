@@ -1,0 +1,43 @@
+
+{# GLOBAL TEMPLATE VARIABLES #}
+{% set siteVersion = 'v1.0.0' %} {# Used as cache breaker for css and js files #}
+{% set gaKey = craft.app.config.general.devMode ? '' : globalMeta.googleAnalyticsKey %}
+{% set baseUrl = craft.app.sites.primarySite.baseUrl %}
+
+{% set activePage = entry %}
+{% set activeChain = [activePage.id] %}
+{% for ancestor in craft.entries().ancestorOf(activePage).all() %}
+  {% set activeChain = activeChain|merge([ancestor.id]) %}
+{% endfor %}
+
+{# USER STATUS MANAGEMENT #}
+{# -- Get valid user types #}
+{# {% set siteUserTypes = craft.categories.group('userType') %}
+{% set userValidCheck = false %} #}
+
+{# -- Get user type from url string #}
+{# {% set userType = craft.app.request.getQueryParam('userStatus') %} #}
+
+{# -- Get userType from cookie or validate url string #}
+{# {% if userType is empty %}
+    {% set userType = craft.cookies.get('userStatus') %}
+    {% set userValidCheck = true %}
+{% else %}
+    {% for user in siteUserTypes.all() %}
+        {% if user.slug|lower == userType|lower %}
+            {% set userValidCheck = true %}
+        {% endif %}
+    {% endfor %}
+{% endif %} #}
+
+{# -- Fall back to default userType if no selection or failed validation #}
+{# {% if userType is empty or userValidCheck == false %}
+    {% set userType = siteUserTypes.one().slug %}
+{% endif %} #}
+
+{# -- Set cookie and category variable for templates to established valid userType #}
+{# {% do craft.cookies.set( 'userStatus', userType ) %}
+{% set userTypeCategory = craft.categories.slug(userType).one() %} #}
+
+{# DATA HANDOFF #}
+{% block master %}{% endblock %}

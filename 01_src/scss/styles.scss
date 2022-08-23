@@ -1,0 +1,71 @@
+// screen.scss
+
+// ------------------
+// 00 - Introduction:
+// ------------------
+// This file should *ONLY* be used for the importing of SCSS files
+// All SCSS should be written in the BEM naming convention, popularised by Harry Roberts (https://csswizardry.com/2013/01/mindbemding-getting-your-head-round-bem-syntax/)
+// The naming convention follows this pattern:
+// 	- .block {}
+// 	- .block__element {}
+// 	- .block--modifier {}
+// 	- .block__element--modifier {}
+
+// ----------------------------
+// 01 - Wiping the slate clean:
+// ----------------------------
+@import "node_modules/normalize.css/normalize";
+@import "setup/box-sizing";
+
+// ----------------------------------------------
+// 02 - Adding our own settings/variables:
+// ----------------------------------------------
+@import "01_src/scss/global_variables/colors";
+@import "01_src/scss/global_variables/dimensions";
+@import "01_src/scss/global_variables/motion";
+// @import "node_modules/modularscale-sass/stylesheets/modularscale";
+@import "01_src/scss/global_variables/type";
+
+// ----------------------------------------
+// 03 - Grabbing plugins from node_modules:
+// ----------------------------------------
+
+// Font Awesome
+$fa-font-path: "/assets/fonts";
+// @import "node_modules/font-awesome/scss/font-awesome.scss";
+
+// $fa-font-path: '~font-awesome/fonts/';
+@import '~font-awesome/scss/font-awesome';
+
+// // Bootstrap 4 - import required partials
+@import "node_modules/bootstrap/scss/functions";
+@import "node_modules/bootstrap/scss/variables";
+@import "node_modules/bootstrap/scss/mixins";
+@import "node_modules/bootstrap/scss/utilities";
+
+// Bootstrap 4 modal
+@import "node_modules/bootstrap/scss/modal.scss";
+
+// Bootstrap 4 - flexbox grid system
+@import "node_modules/bootstrap/scss/bootstrap-grid.scss";
+
+// ---------------------------------
+// 04 - Setting up our type systems:
+// ---------------------------------
+@import "01_src/scss/typography";
+@import "01_src/scss/media"; // And misc media
+
+// ----------------------------------------------------------
+// 05 - Fetching our component styles, in some kind of order:
+// ----------------------------------------------------------
+@import "01_src/scss/components/layouts.scss";
+@import "01_src/scss/components/hamburger.scss";
+@import "01_src/scss/components/buttons.scss";
+@import "01_src/scss/components/header.scss";
+@import "01_src/scss/components/banner.scss";
+@import "01_src/scss/components/panel.scss";
+@import "01_src/scss/components/custom.scss";
+@import "01_src/scss/components/content-block-styles.scss";
+@import "01_src/scss/components/expander.scss";
+@import "01_src/scss/components/table.scss";
+@import "01_src/scss/components/modal.scss";

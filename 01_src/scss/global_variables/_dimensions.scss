@@ -1,0 +1,47 @@
+// dimensions.scss
+
+$air: 30px; // Used for controlling consistency of margins, padding, spacing
+$line-width: 2px; // Used for consistent border/line/hr thickness
+$border-radius: 3px; // Used for consistent corner rounding
+
+$navigation-bar--min: 220px;
+$navigation-bar--max: 280px;
+
+$mobile--s: 420px;
+$mobile: 540px;
+$tablet: 680px;
+$tablet--l: 760px;
+$desktop: 1024px;
+$wide: 1400px;
+
+$width__max: 1800px; // Width for "pop-out" or wider-than-content sections
+$width__content: 1450px; // Maximum width the content expands out to
+$width__min: 320px; // Minimum width value mostly used for fluid type min range
+
+
+// Bootstrap grid variables
+
+// Grid breakpoints
+//
+// Define the minimum dimensions at which your layout will change,
+// adapting to different screen sizes, for use in media queries.
+
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 1100px,
+  xl: 1400px
+);
+
+
+// Grid containers
+//
+// Define the maximum width of `.container` for different screen sizes.
+
+$container-max-widths: (
+  sm: $mobile,
+  md: $tablet--l,
+  lg: $desktop,
+  xl: $wide
+);

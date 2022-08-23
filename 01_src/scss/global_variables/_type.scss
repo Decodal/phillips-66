@@ -1,0 +1,12 @@
+// type.scss
+
+@import url('http://fonts.cdnfonts.com/css/gotham');
+
+$typeface-body: 'Arial';
+$typeface-heading: 'Arial';
+
+$typeface__primary: $typeface-body, Arial, sans-serif;
+$typeface__secondary: $typeface-heading, Arial, sans-serif;
+
+$fontsize__base: 16px;
+$baseline: 20px;

@@ -1,0 +1,43 @@
+{
+    "name": "mildlygeeky/craft-kint",
+    "description": "Adds Kint, an in-app PHP debugger, to Craft CMS 3.x for use in Twig and PHP.",
+    "type": "craft-plugin",
+    "version": "1.0.0",
+    "keywords": [
+        "craft",
+        "cms",
+        "craftcms",
+        "craft-plugin",
+        "kint"
+    ],
+    "support": {
+        "docs": "https://github.com/mildlygeeky/craft-kint/blob/master/README.md",
+        "issues": "https://github.com/mildlygeeky/craft-kint/issues"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Mildly Geeky, Inc.",
+            "homepage": "https://mildlygeeky.com"
+        }
+    ],
+    "require": {
+        "craftcms/cms": "^3.0.0-RC1",
+        "kint-php/kint": "^3.1",
+        "kint-php/kint-twig": "^2.0",
+        "kint-php/kint-js": "^2.0"
+    },
+    "autoload": {
+        "psr-4": {
+          "mildlygeeky\\kint\\": "src/"
+        }
+    },
+    "extra": {
+        "name": "Kint",
+        "handle": "kint",
+        "hasCpSettings": true,
+        "hasCpSection": false,
+        "changelogUrl": "https://raw.githubusercontent.com/mildlygeeky/craft-kint/master/CHANGELOG.md",
+        "class": "mildlygeeky\\kint\\Plugin"
+    }
+}

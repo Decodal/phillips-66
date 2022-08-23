@@ -1,0 +1,172 @@
+{% if contentBlocks is not defined %}
+    {% set contentBlocks = entry.contentBlocks.all() %}
+{% endif %}
+
+{% set columnOpen = false %}
+{% set expanderOpen = false %}
+
+{# {% cache using key userType %} #}
+
+    <div class="content-blocks row">
+
+    {% set showingContent = false %}
+
+    {# loop thorugh content blocks #}
+
+    {% for block in contentBlocks %}
+
+        {% set showingContent = true %}
+
+        {# Output column #}
+
+        {% if block.type == "column" %}
+
+            {% if columnOpen %}
+                </div>
+            {% endif %}
+
+            <div class="{{ block.columnClass }}">
+            {% set columnOpen = true %}
+
+        {# Output full width column if none set #}
+            
+        {% elseif columnOpen == false %}
+
+            <div class="col-12">
+            {% set columnOpen = true %}
+
+        {% endif %}
+
+        {# Manage and output expander #}
+        {% if block.type == "expander" %}
+
+            {% if expanderOpen == true %}
+                    </div>
+                </div>
+                {% set expanderOpen = false %}
+            {% endif %}
+            {% if block.expanderAttributes.contains('isEndcap') == false %}
+                {% set exAttrClassHead = '' %}
+                {% set exAttrClassHead = block.expanderAttributes.contains('defaultsOpen') ? exAttrClassHead ~ ' open' : exAttrClassHead %}
+                {% set exAttrClassBody = '' %}
+                <div
+                    class="expander__heading {{ exAttrClassHead }}"
+                    data-expander="{{ loop.index }}"
+                    data-expander-close-others="{{ block.expanderAttributes.contains('closesOthers') ? 'true' : 'false' }}"
+                    >
+                    <h3 id="warpHeading{{ loop.index }}" class="expander__heading-text warp-heading">
+                        {{ block.expanderHeading ? block.expanderHeading }}
+                        <span class="expander-indicator"><i aria-hidden="true"></i></span>
+                    </h3>
+                </div>
+                <div class="expander__body {{ exAttrClassBody }}">
+                    <div
+                        class="{{ block.expanderAttributes.contains('defaultsOpen') ? 'open' }}"
+                        data-expander-content="{{ loop.index }}"
+                        >
+                        {% set expanderOpen = true %}
+            {% endif %}
+
+        {# Output normal content #}
+
+        {% elseif block.type == "regularCopy" %}
+
+            <div class="wysiwyg{{ block.customClass ? ' ' ~block.customClass : '' }}">{{ block.text }}</div>
+
+        {% elseif block.type == "sectionHeading" %}
+
+            <{{ block.headingLevel }} class="section-heading{{ block.customClass ? ' ' ~block.customClass : '' }}">{{ block.headingText }}</{{ block.headingLevel }}>
+
+        {% elseif block.type == "regularImage" %}
+
+            <figure class="regular-image{{ block.customClass ? ' ' ~block.customClass : '' }}">
+
+            {% set blockTitle = block.caption|length ? block.caption : block.altTag %}
+
+            <img class="regular-image__image" src="{{ block.image.one().getUrl() }}" alt="{{ block.altTag }}" title="{{ blockTitle }}">
+                {% if block.caption %}
+                    <figcaption class="regular-image__caption">{{ block.caption }}</figcaption>
+                {% endif %}
+
+            </figure>
+
+        {% elseif block.type == "responsiveTable" %}
+
+            {% set rows = block.mrTable.rows %}
+            {% set columns = block.mrTable.columns %}
+
+            <div class="Rtable Rtable--{{ rows|length + 1 }}cols Rtable--collapse js-RtableAccordions{{ block.customClass ? ' ' ~block.customClass : '' }}">
+              
+              {% for col in columns %}
+                  <div class="Rtable-cell Accordion" role="tab" aria-selected="{{ loop.first ? "true" : "false" }}">{{ col.heading }}</div>
+                    {% set column = loop.index0 %}
+                    {# <div class="Rtable-cell{{ column > 0 ? " hidden" }}">{{ col.heading }}</div> #}
+                  {% for i in 1..rows|length %}
+                    {% set row = loop.index0 %}
+                      <div class="Rtable-cell{{ i > 0 and column > 0 ? " hidden" }}">{{ rows[row][column] }}</div>
+                  {% endfor %}
+              {% endfor %}
+
+            </div>
+
+        {% elseif block.type == "table" %}
+
+            {% include "_blocks-complex/table" %}
+
+        {% elseif block.type == "address" %}
+
+            {% include "_blocks-complex/address" %}
+
+        {% elseif block.type == "chartJs" %}
+
+            {% include "_blocks-complex/chartJs" %}
+
+        {% elseif block.type == "staticBlock" %}
+
+            {% set blockTemplate = "_blocks-static/" ~block.templateName %}
+            {% include [blockTemplate, "_blocks-static/empty"] with { 'customClass' : block.customClass ? block.customClass : '' } %}
+
+        {% elseif block.type == "complexBlock" %}
+
+            {% set blockTemplate = "_blocks-complex/" ~block.complexEntry.one().type %}
+            {% include [blockTemplate, "_blocks-static/empty"] with {
+                'block' : block.complexEntry.one(),
+                'customClass' : block.customClass ? block.customClass : '',
+                'key' : loop.index
+            } %}
+
+        {% endif %}
+
+    {% endfor %}
+
+    {# Close open expander #}
+    {% if expanderOpen %}
+                </div>
+            </div>
+    {% endif %}
+
+    {# Close open column #}
+    {% if columnOpen %}
+        </div>
+    {% endif %}
+
+    {% if showingContent == false %}
+
+        <div class="col-12">
+            <div class="panel panel-warning">
+                <div class="panel-heading">
+                    Nothing here
+                </div>
+                <div class="panel-body">
+                    <p>Theres no content here for your type of pension.</p>
+
+                    <p><a href="{{siteUrl}}benefits" class="btn btn-primary">Go to the benefits homepage</a> or <a href="{{siteUrl}}" class="btn btn-primary">Choose a different membership or section</a></p>
+                </div>
+            </div>
+        </div>
+
+    {% endif %}
+
+    </div>
+
+{# {% endcache %} #}

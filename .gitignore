@@ -1,0 +1,13 @@
+/.env
+/.idea
+.DS_Store
+public/assets/uploads/
+/node_modules
+/config/project
+/config/license.key
+.sass-cache
+*.log
+.idea
+*.map
+.vscode
+/.vscode
