@@ -24,8 +24,33 @@
 		color:black;
 		.footer__inner {
 			justify-content: space-between;
+			@include media-breakpoint-down(sm) {
+				flex-flow: wrap;
+			}
 			.content__left {
 				align-items: baseline;
+				@include media-breakpoint-down(sm) {
+					width:100%;
+					flex-flow: wrap;
+					margin-bottom:20px;
+				}
+				a {
+					width:fit-content;
+					color:black;
+					margin: 0 10px;
+					@include media-breakpoint-down(sm) {
+						// margin: 0 10px;
+						&.first-child {
+							margin-left:0;
+						}
+						&:first-child {
+							margin-left:0;
+						}
+					}
+					&:last-child {
+						margin-left:0;
+					}
+				}
 			}
 			p {
 				margin-right:50px;
@@ -34,12 +59,11 @@
 				&:last-child {
 					margin-right:0;
 				}
+				@include media-breakpoint-down(sm) {
+					width:100%;
+				}
 			}
-			a {
-				width:fit-content;
-				color:black;
-				margin: 0 10px;
-			}
+			
 	  	}
 	}
 }

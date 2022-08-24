@@ -4,7 +4,7 @@ a.btn {
     text-align: center;
     padding:10px 30px 15px;
     width: fit-content;
-    font-weight:600;
+    font-weight:500;
     position: relative;
     display: block;
     &.min-width {
@@ -20,7 +20,7 @@ a.btn__primary {
     border-radius: 6px;
     border: 0;
     text-transform: uppercase;
-    font-weight: 800;
+    // font-weight: 800;
     font-size: 17px;
     // letter-spacing: 1px;
     padding: 15px 20px;
