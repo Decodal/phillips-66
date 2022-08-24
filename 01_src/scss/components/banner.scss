@@ -120,6 +120,11 @@
 #page--homepage {
     .main__banner {
         background-image: url('/assets/uploads/stripImage_Home.jpg');
+
+        @media screen and (max-width: 600px) {
+            background-image: url('/assets/uploads/stripImage_Home-mobile.jpg'); 
+            background-position: 95% 0;
+        }
         h1 {
            color: black;
         }

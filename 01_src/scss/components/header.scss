@@ -65,8 +65,11 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		width: 260px;
+		width: 190px;
 		padding: 17px 0px;
+		// @include media-breakpoint-up(md) {
+		// 	width: 260px;
+		// }
 		// margin-left: $air/2;
 		img {
 			width:100%;
