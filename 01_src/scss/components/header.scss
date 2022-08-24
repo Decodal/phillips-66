@@ -67,9 +67,9 @@
 		justify-content: center;
 		width: 190px;
 		padding: 17px 0px;
-		// @include media-breakpoint-up(md) {
-		// 	width: 260px;
-		// }
+		@include media-breakpoint-up(lg) {
+			width: 260px;
+		}
 		// margin-left: $air/2;
 		img {
 			width:100%;
