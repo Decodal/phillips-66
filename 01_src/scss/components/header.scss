@@ -139,6 +139,7 @@
 			  font-size:$baseline;
 			  text-transform: uppercase;
 			  font-weight: 500;
+			  font-family: 'Gotham-Black';
 			  cursor: pointer;
 			//   & { color: $color__Tundora2}
 			  &:hover, &:focus { 
@@ -172,6 +173,7 @@
 				padding: 0 $air/2 2/6*$air;
 				border-bottom: $air/6 solid transparent;
 				transition: color 0.5s ease;
+				
 				// &, &:focus { color: white }
 				// &:hover { color:white }
 	  
