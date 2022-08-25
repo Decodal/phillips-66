@@ -36,7 +36,7 @@
 				}
 				a {
 					width: fit-content;
-					color:black;
+					
 					margin: 0 10px;
 					@include media-breakpoint-down(sm) {
 
@@ -51,6 +51,10 @@
 					// 	margin-left:0;
 					// }
 				}
+			}
+			a {
+				display: inline-block;
+				color:black;
 			}
 			p {
 				margin-right:50px;
