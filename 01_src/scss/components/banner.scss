@@ -1,6 +1,6 @@
 .main__banner {
     // background-color: $color__Eminence;
-    background-position: center center;
+    background-position: 50% bottom;
     background-repeat: no-repeat;
     background-size: cover;
 
@@ -46,11 +46,11 @@
     }
     &.style__2 {
         .mb__content {
-            padding:200px 0 60px;
+            padding: 200px 0 60px;
             h1 {
-                margin-top:0;
-                margin-bottom:0;
-                font-weight:bold;
+                margin-top: 0;
+                margin-bottom: 0;
+                font-weight: bold;
             }
         }
     }
@@ -59,14 +59,15 @@
 .documents__banner {
     // background-color: $color__Mariner;
     background-image: url('/assets/images/backgrounds/libraryStripImage.jpg');
-    background-position: center center;
+    background-position: 50% bottom;
     background-repeat: no-repeat;
     background-size: cover;
-}   
+}
 .db__content {
     display:flex;
     flex-flow: row;
     padding:60px 0;
+
     h2 {
         color: $color__White;
         margin-top: 0;
@@ -135,7 +136,7 @@
 
         @media screen and (max-width: 600px) {
             background-image: url('/assets/uploads/stripImage_Home-mobile.jpg'); 
-            background-position: 95% 0;
+            background-position: 95% bottom;
         }
         h1 {
            color: black;

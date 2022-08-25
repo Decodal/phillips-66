@@ -35,11 +35,11 @@
 					margin-bottom:20px;
 				}
 				a {
-					width:fit-content;
+					width: fit-content;
 					color:black;
 					margin: 0 10px;
 					@include media-breakpoint-down(sm) {
-						// margin: 0 10px;
+
 						&.first-child {
 							margin-left:0;
 						}
@@ -47,9 +47,9 @@
 							margin-left:0;
 						}
 					}
-					&:last-child {
-						margin-left:0;
-					}
+					// &:last-child {
+					// 	margin-left:0;
+					// }
 				}
 			}
 			p {
@@ -63,7 +63,6 @@
 					width:100%;
 				}
 			}
-			
 	  	}
 	}
 }
