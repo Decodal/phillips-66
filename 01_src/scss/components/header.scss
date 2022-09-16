@@ -65,8 +65,11 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		width: 260px;
+		width: 190px;
 		padding: 17px 0px;
+		@include media-breakpoint-up(lg) {
+			width: 260px;
+		}
 		// margin-left: $air/2;
 		img {
 			width:100%;
@@ -133,10 +136,11 @@
 			  display: block;
 			  margin: 0;
 			  padding: $air/2;
-			  font-weight: 400;
 			  font-size:$baseline;
 			  text-transform: uppercase;
-			  font-weight:bold;
+			  font-weight: 500;
+			  font-family: 'Gotham-Black';
+			  cursor: pointer;
 			//   & { color: $color__Tundora2}
 			  &:hover, &:focus { 
 				  	color: $color__primary;
@@ -169,6 +173,7 @@
 				padding: 0 $air/2 2/6*$air;
 				border-bottom: $air/6 solid transparent;
 				transition: color 0.5s ease;
+				
 				// &, &:focus { color: white }
 				// &:hover { color:white }
 	  
