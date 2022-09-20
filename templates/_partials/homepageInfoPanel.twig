@@ -9,7 +9,9 @@
         <div class="col-md-7">
             <div class="mp__text">
                 {{ entry.homepageInfoText }}
-                <a class="btn btn__primary min-width" href="{{ entry.infoButtonLink }}" target="_blank">{{ entry.infoButtonTitle }}</a>
+                {% if memberPortalButton.memberPortalButtonEnabled %}
+                    <a class="btn btn__primary min-width" href="{{ entry.infoButtonLink }}" target="_blank" data-gaEventAction="Member Portal CTA click-through" data-gaEventCategory="Member Portal CTA" data-gaEventLabel="Member Portal CTA on homepage">{{ entry.infoButtonTitle }}</a>
+                {% endif %}
             </div>
         </div>
     </div>
