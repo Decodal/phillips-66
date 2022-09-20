@@ -100,7 +100,7 @@ module.exports = {
     new BrowserSyncPlugin({
       host: "localhost",
       port: 3000,
-      proxy: "http://local.communisis/", //this needs to be the local url for the website as defined by you
+      proxy: "http://local.phillips66/", //this needs to be the local url for the website as defined by you
       files: [
         "craft/templates/**/*.twig",
         "01_src/scss/*.scss",
