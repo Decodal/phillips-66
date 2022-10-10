@@ -11,42 +11,43 @@
 		margin: 0;
 		cursor: pointer;
 		user-select: none; 
+		width: auto;
 
 		.expander-indicator {
 			display: inline-block;
 			position: absolute;
 			height: $indicatorSize;
 			right: 0;
-			top: 50%;
+			top: 30%;
 			transform: translateY(-55%);
 
 			i {
 				position: relative;
-				display: inline-flex;
-				align-items: center;
-				justify-content: center;
-				height: $indicatorSize;
-				width: $indicatorSize;
-				border-radius: 50%;
-				background-color: $color__secondary;
+				// display: inline-flex;
+				// align-items: center;
+				// justify-content: center;
+				// height: $indicatorSize;
+				// width: $indicatorSize;
+				// border-radius: 50%;
+				// background-color: $color__primary;
 				transform-origin: center;
 				transition: transform 1s ease;
 
-				&:before, &:after {
-					content: '';
-					position: absolute;
-					border-radius: 1px;
-					background-color: white;
-				}
-				&:before {
-					height: 0.2*$indicatorSize;
-					width: 0.7*$indicatorSize;
-				}
-				&:after {
-					height: 0.7*$indicatorSize;
-					width: 0.2*$indicatorSize;
-					transition: height 1s ease;
-				}
+				// &:before, &:after {
+				// 	content: '';
+				// 	position: absolute;
+				// 	border-radius: 1px;
+				// 	background-color: white;
+				// }
+				// &:before {
+				// 	height: 0.2*$indicatorSize;
+				// 	width: 0.7*$indicatorSize;
+				// }
+				// &:after {
+				// 	height: 0.7*$indicatorSize;
+				// 	width: 0.2*$indicatorSize;
+				// 	transition: height 1s ease;
+				// }
 			}
 		}
 	}
