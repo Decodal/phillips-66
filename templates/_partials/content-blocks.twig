@@ -135,6 +135,46 @@
                 'key' : loop.index
             } %}
 
+       {% elseif block.type == "videoDacast" %}
+            {# <div class="video--wrapper">
+                <video class="video" controls playsinline poster="https://view.vzaar.com/{{ block.videoID }}/image">
+                    <source src="https://view.vzaar.com/{{ block.videoID }}/video"/>
+                </video>
+            </div> #}
+            <div class="video--wrapper {{ block.customClass ? ' ' ~block.customClass : '' }}">
+                <div style="position:relative;padding-bottom:56.25%;overflow:hidden;height:0;max-width:100%;">
+                    <iframe id="{{ block.videoID }}" 
+                        src="https://iframe.dacast.com/vod/d4faf0763ce747382ce535d7b3027617/{{ block.videoID }}" 
+                        width="100%" 
+                        height="100%" 
+                        frameborder="0" 
+                        scrolling="no" 
+                        allow="autoplay;encrypted-media" 
+                        allowfullscreen 
+                        webkitallowfullscreen 
+                        mozallowfullscreen 
+                        oallowfullscreen 
+                        msallowfullscreen 
+                        style="position:absolute;top:0;left:0;">
+                    </iframe>
+                </div>
+            </div>
+             {% if block.transcript|length %}
+                <div class="expander__heading" data-expander="9999" data-expander-close-others="true">
+                    <p id="warpHeading9999" class="expander__heading-text warp-heading">
+                    Read the transcript
+                    <span class="expander-indicator"><i class="fa fa-chevron-down" aria-hidden="true"></i></span>
+                    </p>
+                </div>
+                <div class="expander__body">
+                    <div data-expander-content="9999">
+                    
+                        {{ block.transcript }}
+                    
+                    </div>
+                </div>
+                {% endif %}
+
         {% endif %}
 
     {% endfor %}
