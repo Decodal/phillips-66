@@ -1,7 +1,9 @@
 {% extends "_layouts/normal" %}
+{% set bannerImage = entry.bannerImage %}
+{% set bannerImageSrc = bannerImage|length ? bannerImage.first().url : fallbackBannerImage.bannerImage.first().url %}
 
 {% block content %}
-    <div class="main__banner">
+    <div class="main__banner" style="background-image: url('{{ bannerImageSrc }}');">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
